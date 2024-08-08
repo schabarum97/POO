@@ -1,0 +1,15 @@
+C:\repos\POO\Criptografia\bin\Debug\net8.0\Criptografia.exe
+C:\repos\POO\Criptografia\bin\Debug\net8.0\Criptografia.deps.json
+C:\repos\POO\Criptografia\bin\Debug\net8.0\Criptografia.runtimeconfig.json
+C:\repos\POO\Criptografia\bin\Debug\net8.0\Criptografia.dll
+C:\repos\POO\Criptografia\bin\Debug\net8.0\Criptografia.pdb
+C:\repos\POO\Criptografia\obj\Debug\net8.0\Criptografia.GeneratedMSBuildEditorConfig.editorconfig
+C:\repos\POO\Criptografia\obj\Debug\net8.0\Criptografia.AssemblyInfoInputs.cache
+C:\repos\POO\Criptografia\obj\Debug\net8.0\Criptografia.AssemblyInfo.cs
+C:\repos\POO\Criptografia\obj\Debug\net8.0\Criptografia.csproj.CoreCompileInputs.cache
+C:\repos\POO\Criptografia\obj\Debug\net8.0\Criptografia.sourcelink.json
+C:\repos\POO\Criptografia\obj\Debug\net8.0\Criptografia.dll
+C:\repos\POO\Criptografia\obj\Debug\net8.0\refint\Criptografia.dll
+C:\repos\POO\Criptografia\obj\Debug\net8.0\Criptografia.pdb
+C:\repos\POO\Criptografia\obj\Debug\net8.0\Criptografia.genruntimeconfig.cache
+C:\repos\POO\Criptografia\obj\Debug\net8.0\ref\Criptografia.dll
