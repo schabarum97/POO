@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spotify_List
+namespace Spotify_List.Classes
 {
-    public class VideoSearchResult
+    public class ResultadoBuscaVideo
     {
         public string Title { get; set; }
         public string Url { get; set; }

@@ -1,0 +1,15 @@
+C:\repos\POO\Alg_Cripto\bin\Debug\net8.0\Alg_Cripto.exe
+C:\repos\POO\Alg_Cripto\bin\Debug\net8.0\Alg_Cripto.deps.json
+C:\repos\POO\Alg_Cripto\bin\Debug\net8.0\Alg_Cripto.runtimeconfig.json
+C:\repos\POO\Alg_Cripto\bin\Debug\net8.0\Alg_Cripto.dll
+C:\repos\POO\Alg_Cripto\bin\Debug\net8.0\Alg_Cripto.pdb
+C:\repos\POO\Alg_Cripto\obj\Debug\net8.0\Alg_Cripto.GeneratedMSBuildEditorConfig.editorconfig
+C:\repos\POO\Alg_Cripto\obj\Debug\net8.0\Alg_Cripto.AssemblyInfoInputs.cache
+C:\repos\POO\Alg_Cripto\obj\Debug\net8.0\Alg_Cripto.AssemblyInfo.cs
+C:\repos\POO\Alg_Cripto\obj\Debug\net8.0\Alg_Cripto.csproj.CoreCompileInputs.cache
+C:\repos\POO\Alg_Cripto\obj\Debug\net8.0\Alg_Cripto.sourcelink.json
+C:\repos\POO\Alg_Cripto\obj\Debug\net8.0\Alg_Cripto.dll
+C:\repos\POO\Alg_Cripto\obj\Debug\net8.0\refint\Alg_Cripto.dll
+C:\repos\POO\Alg_Cripto\obj\Debug\net8.0\Alg_Cripto.pdb
+C:\repos\POO\Alg_Cripto\obj\Debug\net8.0\Alg_Cripto.genruntimeconfig.cache
+C:\repos\POO\Alg_Cripto\obj\Debug\net8.0\ref\Alg_Cripto.dll
