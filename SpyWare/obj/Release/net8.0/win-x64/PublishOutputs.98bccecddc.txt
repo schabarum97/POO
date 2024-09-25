@@ -1,0 +1,2 @@
+C:\repos\POO\SpyWare\bin\Release\net8.0\win-x64\publish\SpyWare.pdb
+C:\repos\POO\SpyWare\bin\Release\net8.0\win-x64\publish\SpyWare.exe
