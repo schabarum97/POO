@@ -1,0 +1,6 @@
+@DiscotecaAPI_HostAddress = http://localhost:5294
+
+GET {{DiscotecaAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
