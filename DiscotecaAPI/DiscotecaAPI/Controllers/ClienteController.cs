@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DiscotecaAPI.Models;
-using DiscotecaAPI.Services;
+using DiscotecaAPI.DTO;
 using DiscotecaAPI.Data;
+using DiscotecaAPI.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace DiscotecaAPI.Controllers
 {
@@ -10,54 +11,64 @@ namespace DiscotecaAPI.Controllers
     [Route("api/[controller]")]
     public class ClienteController : ControllerBase
     {
-        private readonly IClienteService _clienteService;
         private readonly InMemoryDbContext _dbContext;
 
         public ClienteController(InMemoryDbContext dbContext)
         {
             _dbContext = dbContext;
-            _clienteService = new ClienteService(_dbContext);
         }
 
         [HttpGet]
-        public IActionResult ListarTodos()
+        public async Task<IActionResult> ListarTodos()
         {
-            var clientes = _clienteService.ListarTodos();
+            var clientes = await _dbContext.Clientes.ToListAsync();
             return Ok(clientes);
         }
 
         [HttpGet("{id}")]
-        public IActionResult ObterPorId(int id)
+        public async Task<IActionResult> ObterPorId(int id)
         {
-            var cliente = _clienteService.ObterPorId(id);
+            var cliente = await _dbContext.Clientes.FindAsync(id);
             if (cliente == null) return NotFound();
             return Ok(cliente);
         }
 
         [HttpPost]
-        public IActionResult Adicionar([FromBody] Cliente cliente)
+        public async Task<IActionResult> Adicionar([FromBody] Cliente cliente)
         {
-            _clienteService.Adicionar(cliente);
+            if (cliente == null) return BadRequest();
+
+            await _dbContext.Clientes.AddAsync(cliente);
+            await _dbContext.SaveChangesAsync();
             return CreatedAtAction(nameof(ObterPorId), new { id = cliente.Id }, cliente);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Atualizar(int id, [FromBody] Cliente cliente)
+        public async Task<IActionResult> Atualizar(int id, [FromBody] Cliente clienteDto)
         {
-            var clienteExistente = _clienteService.ObterPorId(id);
+            if (clienteDto == null || id != clienteDto.Id) return BadRequest();
+
+            var clienteExistente = await _dbContext.Clientes.FindAsync(id);
             if (clienteExistente == null) return NotFound();
 
-            _clienteService.Atualizar(cliente);
+            // Atualiza os dados do cliente existente
+            clienteExistente.Nome = clienteDto.Nome;
+            clienteExistente.Email = clienteDto.Email;
+            // Adicione outros campos conforme necessário
+
+            _dbContext.Clientes.Update(clienteExistente);
+            await _dbContext.SaveChangesAsync();
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Remover(int id)
+        public async Task<IActionResult> Remover(int id)
         {
-            var cliente = _clienteService.ObterPorId(id);
+            var cliente = await _dbContext.Clientes.FindAsync(id);
             if (cliente == null) return NotFound();
 
-            _clienteService.Remover(id);
+            _dbContext.Clientes.Remove(cliente);
+            await _dbContext.SaveChangesAsync();
             return NoContent();
         }
     }

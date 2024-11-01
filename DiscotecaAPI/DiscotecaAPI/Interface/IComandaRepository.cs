@@ -1,16 +1,14 @@
-﻿using DiscotecaAPI.DTOs;
-using DiscotecaAPI.Models;
+﻿using DiscotecaAPI.Models;
 
-namespace DiscotecaAPI.Services
+namespace DiscotecaAPI.Repositories
 {
-    public interface IComandaService
+    public interface IComandaRepository
     {
         Comanda ObterPorId(int id);
         IEnumerable<Comanda> ListarTodas();
-        void CriarComanda(ComandaDTO comanda);
+        void CriarComanda(Comanda comanda);
         void VincularCliente(int comandaId, Cliente cliente);
         void AdicionarProduto(int comandaId, ProdutoComanda produtoComanda);
-        decimal CalcularTotal(int comandaId);
         void PagarComanda(int comandaId);
     }
 }

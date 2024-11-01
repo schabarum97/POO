@@ -1,22 +1,12 @@
-﻿using DiscotecaAPI.Models;
-
-public class ProdutoComanda
+﻿public class ProdutoComanda
 {
     public int Id { get; set; }
+    public string Nome { get; set; }
+    public decimal Preco { get; set; } // Verifique se esta propriedade existe
     public int Quantidade { get; set; }
-    public Bebida Bebida { get; set; }
 
-    public ProdutoComanda() { }
-
-    public ProdutoComanda(Bebida bebida, int quantidade)
-    {
-        Bebida = bebida;
-        Quantidade = quantidade;
-    }
-
-    // Método CalcularValor que multiplica o preço pela quantidade
     public decimal CalcularValor()
     {
-        return Bebida.Preco * Quantidade;
+        return Preco * Quantidade;
     }
 }

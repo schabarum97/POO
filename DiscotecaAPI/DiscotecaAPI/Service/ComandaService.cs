@@ -1,31 +1,35 @@
-﻿using DiscotecaAPI.Data;
+﻿using DiscotecaAPI.DTOs;
 using DiscotecaAPI.Models;
+using DiscotecaAPI.Repositories;
+using DiscotecaAPI.Validators;
 
 namespace DiscotecaAPI.Services
 {
     public class ComandaService : IComandaService
     {
-        private readonly InMemoryDbContext _dbContext;
+        private readonly IComandaRepository _comandaRepository;
+        private readonly IComandaValidator _comandaValidator;
 
-        public ComandaService(InMemoryDbContext dbContext)
+        public ComandaService(IComandaRepository comandaRepository, IComandaValidator comandaValidator)
         {
-            _dbContext = dbContext;
+            _comandaRepository = comandaRepository;
+            _comandaValidator = comandaValidator;
         }
 
         public Comanda ObterPorId(int id)
         {
-            return _dbContext.Comandas.FirstOrDefault(c => c.Id == id);
+            return _comandaRepository.ObterPorId(id);
         }
 
         public IEnumerable<Comanda> ListarTodas()
         {
-            return _dbContext.Comandas.ToList();
+            return _comandaRepository.ListarTodas();
         }
 
         public void CriarComanda(Comanda comanda)
         {
-            _dbContext.Comandas.Add(comanda);
-            _dbContext.SaveChanges();
+            _comandaValidator.ValidarComanda(comanda);
+            _comandaRepository.CriarComanda(comanda);
         }
 
         public void VincularCliente(int comandaId, Cliente cliente)
@@ -33,19 +37,14 @@ namespace DiscotecaAPI.Services
             var comanda = ObterPorId(comandaId);
             if (comanda != null && cliente != null)
             {
-                comanda.Cliente = cliente;
-                _dbContext.SaveChanges();
+                _comandaRepository.VincularCliente(comandaId, cliente);
             }
         }
 
         public void AdicionarProduto(int comandaId, ProdutoComanda produtoComanda)
         {
-            var comanda = ObterPorId(comandaId);
-            if (comanda != null)
-            {
-                comanda.Produtos.Add(produtoComanda);
-                _dbContext.SaveChanges();
-            }
+            _comandaValidator.ValidarProdutoComanda(produtoComanda);
+            _comandaRepository.AdicionarProduto(comandaId, produtoComanda);
         }
 
         public decimal CalcularTotal(int comandaId)
@@ -64,9 +63,13 @@ namespace DiscotecaAPI.Services
             var comanda = ObterPorId(comandaId);
             if (comanda != null)
             {
-                comanda.Paga = true;
-                _dbContext.SaveChanges();
+                _comandaRepository.PagarComanda(comandaId);
             }
+        }
+
+        public void CriarComanda(ComandaDTO comanda)
+        {
+            throw new NotImplementedException();
         }
     }
 }

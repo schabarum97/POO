@@ -1,13 +1,10 @@
-﻿using DiscotecaAPI.Models;
+﻿using DiscotecaAPI.DTO;
 
-namespace DiscotecaAPI.Services
+public interface IClienteService
 {
-    public interface IClienteService
-    {
-        Cliente ObterPorId(int id);
-        IEnumerable<Cliente> ListarTodos();
-        void Adicionar(Cliente cliente);
-        void Atualizar(Cliente cliente);
-        void Remover(int id);
-    }
+    ClienteDTO ObterPorId(int id);
+    IEnumerable<ClienteDTO> ListarTodos();
+    void Adicionar(ClienteDTO clienteDto);
+    void Atualizar(int id, ClienteDTO clienteDto);
+    void Remover(int id);
 }

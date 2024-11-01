@@ -1,54 +1,81 @@
-﻿using DiscotecaAPI.Data;
+﻿using DiscotecaAPI.DTO;
 using DiscotecaAPI.Models;
-using DiscotecaAPI.Services;
+using DiscotecaAPI.Repository;
+using DiscotecaAPI.Validate;
 
 namespace DiscotecaAPI.Service
 {
     public class BebidaService : IBebidaService
     {
-        private readonly InMemoryDbContext _dbContext;
+        private readonly IBebidaRepository _bebidaRepository;
+        private readonly BebidaValidator _bebidaValidator;
 
-        public BebidaService(InMemoryDbContext dbContext)
+        public BebidaService(IBebidaRepository bebidaRepository, BebidaValidator bebidaValidator)
         {
-            _dbContext = dbContext;
+            _bebidaRepository = bebidaRepository;
+            _bebidaValidator = bebidaValidator;
         }
 
-        public Bebida ObterPorId(int id)
+        public BebidaDTO ObterPorId(int id)
         {
-            return _dbContext.Bebidas.FirstOrDefault(b => b.Id == id);
-        }
+            var bebida = _bebidaRepository.ObterPorId(id);
+            if (bebida == null) return null;
 
-        public IEnumerable<Bebida> ListarTodas()
-        {
-            return _dbContext.Bebidas.ToList();
-        }
-
-        public void Adicionar(Bebida bebida)
-        {
-            _dbContext.Bebidas.Add(bebida);
-            _dbContext.SaveChanges();
-        }
-
-        public void Atualizar(Bebida bebida)
-        {
-            var bebidaExistente = ObterPorId(bebida.Id);
-            if (bebidaExistente != null)
+            return new BebidaDTO
             {
-                bebidaExistente.Nome = bebida.Nome;
-                bebidaExistente.Preco = bebida.Preco;
-                bebidaExistente.Tipo = bebida.Tipo;
-                _dbContext.SaveChanges();
-            }
+                Id = bebida.Id,
+                Nome = bebida.Nome,
+                Preco = bebida.Preco,
+                Tipo = bebida.Tipo
+            };
         }
 
-        public void Remover(int id)
+        public IEnumerable<BebidaDTO> ListarTodas()
         {
-            var bebida = ObterPorId(id);
-            if (bebida != null)
+            return _bebidaRepository.ListarTodas().Select(b => new BebidaDTO
             {
-                _dbContext.Bebidas.Remove(bebida);
-                _dbContext.SaveChanges();
-            }
+                Id = b.Id,
+                Nome = b.Nome,
+                Preco = b.Preco,
+                Tipo = b.Tipo
+            });
+        }
+
+        public bool Adicionar(BebidaDTO bebidaDto)
+        {
+            if (!_bebidaValidator.Validar(bebidaDto)) return false;
+
+            var bebida = new Bebida
+            {
+                Nome = bebidaDto.Nome,
+                Preco = bebidaDto.Preco,
+                Tipo = bebidaDto.Tipo
+            };
+
+            _bebidaRepository.Adicionar(bebida);
+            return true;
+        }
+
+        public bool Atualizar(BebidaDTO bebidaDto)
+        {
+            var bebida = _bebidaRepository.ObterPorId(bebidaDto.Id);
+            if (bebida == null || !_bebidaValidator.Validar(bebidaDto)) return false;
+
+            bebida.Nome = bebidaDto.Nome;
+            bebida.Preco = bebidaDto.Preco;
+            bebida.Tipo = bebidaDto.Tipo;
+
+            _bebidaRepository.Atualizar(bebida);
+            return true;
+        }
+
+        public bool Remover(int id)
+        {
+            var bebida = _bebidaRepository.ObterPorId(id);
+            if (bebida == null) return false;
+
+            _bebidaRepository.Remover(bebida);
+            return true;
         }
     }
 }

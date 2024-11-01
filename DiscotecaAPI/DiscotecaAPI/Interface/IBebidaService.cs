@@ -1,13 +1,14 @@
-﻿using DiscotecaAPI.Models;
+﻿using DiscotecaAPI.DTO;
+using System.Collections.Generic;
 
-namespace DiscotecaAPI.Services
+namespace DiscotecaAPI.Service
 {
     public interface IBebidaService
     {
-        Bebida ObterPorId(int id);
-        IEnumerable<Bebida> ListarTodas();
-        void Adicionar(Bebida bebida);
-        void Atualizar(Bebida bebida);
-        void Remover(int id);
+        BebidaDTO ObterPorId(int id);
+        IEnumerable<BebidaDTO> ListarTodas();
+        bool Adicionar(BebidaDTO bebidaDto);
+        bool Atualizar(BebidaDTO bebidaDto);
+        bool Remover(int id);
     }
 }
