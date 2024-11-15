@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiscotecaAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e639c9bc503d3655552c084fbf07e64a91d86827")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b221ec045d325b443df354bb3aa719218bddbf6d")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiscotecaAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiscotecaAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
